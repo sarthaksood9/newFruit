@@ -12,6 +12,7 @@ function App() {
   const user = { user: { role: "admin" } };
 
   console.log(user?.user?.role);
+  // console.log(user?.user?.role);
 
   return (
     <>
