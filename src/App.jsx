@@ -1,20 +1,30 @@
 
 import Login from './components/Login'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom'
 import Home from './components/Homepage'
-import FaQ from './components/fff'
+import About from './components/About'
+import ProductRoutees from './Routes/ProductRoutees';
+import AdminRoutes from './Routes/AdminRoutes';
+import { Toaster } from 'react-hot-toast';
 function App() {
+
+
+  const user = { user: { role: "admin" } };
+
+  console.log(user?.user?.role);
 
   return (
     <>
-    <Router>
-      <Routes>
-      <Route path='/' element={<Login/>}/>
-      <Route path="/homepage" element={<Home />} />
-      <Route path="/faq" element={<FaQ />} />
-      <Route path="/chat" element={<iframe src="/chat.html" width="100%" height="500px" />} />
-    </Routes>
-    </Router>
+      {/* <BrowserRouter> */}
+      <Router>
+        <Routes>
+
+          {<Route path='/*' element={user?.user?.role !== "admin" ? <AdminRoutes /> : <ProductRoutees />} />}
+        </Routes>
+      </Router>
+          <Toaster />
+      {/* </BrowserRouter> */}
+
     </>
   )
 }
